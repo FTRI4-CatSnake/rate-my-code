@@ -5,9 +5,11 @@ import FeedCodeBlock from './FeedCodeBlock.jsx';
 export default function Feed(props) {
   // React hooks for state - store the data from the database
   const [codeBlocks, setCodeBlocks] = useState([]);
+  // const [posts, setPosts] = useState([]); //this was taken from CreatePost - same purpose as codeBlocks/setCodeBlocks
+
 
   // update state that we fetch
-  fetch(`/api/getTopic/${props.topic}`)
+  fetch(`/api/gettopic/topic/${props.topic}`) //TODO: remove 'topic'
     .then((res) => res.json())
     .then((data) => {
       setCodeBlocks(data);
@@ -16,7 +18,13 @@ export default function Feed(props) {
 
   // create codeblock components and save them in an array called 'codeBlockEl'
   const codeBlockEl = codeBlocks.map(post => {
-    return <FeedCodeBlock key={post._id} code={post.code} />;
+    return (
+      <FeedCodeBlock 
+        key={post._id} 
+        title={post.title}
+        code={post.code} 
+      />
+    );
   });
 
   // returns code block cards
