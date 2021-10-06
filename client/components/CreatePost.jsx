@@ -25,7 +25,7 @@ export default function CreatePost() {
     const enteredCause = causeInputRef.current.value;
     const enteredCode = codeInputRef.current.value;
     const createdPost = {
-      topic: enteredTopic,
+      topic: enteredTopic.toLowerCase(),
       // date: Date.now(),
       upvotes: 0,
       downvotes: 0,

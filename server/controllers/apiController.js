@@ -14,7 +14,7 @@ apiController.getTopic = (req, res, next) => {
     `,
     params: [topic]
   };
-
+  
   db.query(query.text, query.params, (err, dbResponse) => {
     if(err) {
       next({
