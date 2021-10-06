@@ -24,6 +24,8 @@ export default function PostView() {
     })
     .catch((err) => console.log(err));
 
+
+  //UPDATE - just show selected post
   // create codeblock components and save them in an array
   const codeBlockEl = codeBlocks.map((code, i) => {
     return <FeedCodeBlock key={i} info={code} />;
