@@ -23,13 +23,7 @@ export default function LogInContainer() {
 
     console.log('About to fetch in loginContainer:', user);
     // make fetch request to check login data
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    })
+    fetch(`/login/${enteredUsername}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -37,7 +31,7 @@ export default function LogInContainer() {
           setVerified(true);
         }
       })
-      .catch((err) => console.log('POST REQUEST ERROR: ', err));
+      .catch((err) => console.log('GET REQUEST ERROR: ', err));
   }
 
   function signup() {
@@ -49,7 +43,7 @@ export default function LogInContainer() {
     };
 
     // make fetch request to send new user data
-    fetch('/login/createUser', {
+    fetch('/login/createuser', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -84,7 +78,8 @@ export default function LogInContainer() {
         {/* temp bar to delete after development */}
         <header>
           TEMP NAV BAR: <br />
-          <Link to="/home">Home</Link>
+          <Link to="/home">Home</Link><br />
+          <Link to="/home/postview">Post View</Link>
         </header>
         <h1>Rate-My-Code</h1>
         <form>

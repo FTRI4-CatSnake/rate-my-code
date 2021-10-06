@@ -7,12 +7,13 @@ export default function Feed(props) {
   const [codeBlocks, setCodeBlocks] = useState([]);
 
   // update state that we fetch
-  fetch(`/api/getTopic/${props.topic}`)
+  fetch(`/api/gettopic/topic/${props.topic}`)
     .then((res) => res.json())
     .then((data) => {
       setCodeBlocks(data);
     })
     .catch((err) => console.log(err));
+  
 
   // create codeblock components and save them in an array
   const codeBlockEl = codeBlocks.map(post => {
