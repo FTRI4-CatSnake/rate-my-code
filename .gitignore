@@ -3,3 +3,4 @@ node_modules/
 .env
 server/query.sql    
 dist/bundle.js
+brokenRoutes.txt
