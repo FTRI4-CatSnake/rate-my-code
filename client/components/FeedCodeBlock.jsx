@@ -10,7 +10,8 @@ export default function FeedCodeBlock(props) {
       <Link to={'/home/postview/'}>
         <div className={classes.codeBlock}>
           <div>
-            {props.code}
+            <h2>{props.title}</h2>
+            <code>{props.code}</code>
           </div>
         </div>
       </Link>
