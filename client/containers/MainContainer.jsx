@@ -10,7 +10,6 @@ import Feed from '../components/Feed.jsx';
 import CreatePost from '../components/CreatePost.jsx';
 import PostView from '../components/PostView.jsx';
 import './custom.scss';
-import { javascript } from 'webpack';
 
 export default function MainContainer() {
 
@@ -77,4 +76,4 @@ export default function MainContainer() {
   );
 }
 
-//@import '~react-pro-sidebar/dist/scss/styles.scss'; for styles.scss
+// //@import '~react-pro-sidebar/dist/scss/styles.scss'; for styles.scss

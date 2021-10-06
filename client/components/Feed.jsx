@@ -9,7 +9,7 @@ export default function Feed(props) {
 
 
   // update state that we fetch
-  fetch(`/api/gettopic/topic/${props.topic}`) //TODO: remove 'topic'
+  fetch(`/api/gettopic/${props.topic}`) //removed /topic
     .then((res) => res.json())
     .then((data) => {
       setCodeBlocks(data);
@@ -30,7 +30,7 @@ export default function Feed(props) {
   // returns code block cards
   return (
     <div>
-      <div>{codeBlockEl}</div>
+      {codeBlockEl}
     </div>
   );
 }
