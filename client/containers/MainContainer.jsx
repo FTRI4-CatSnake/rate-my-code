@@ -5,15 +5,27 @@ import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import Container from '@mui/material/Container';
 import 'react-pro-sidebar/dist/css/styles.css';
 
-import CreatePost from '../components/CreatePost.jsx';
-import Feed from '../components/Feed.jsx';
-
 import classes from './MainContainer.module.css';
+import Feed from '../components/Feed.jsx';
+import CreatePost from '../components/CreatePost.jsx';
+import PostView from '../components/PostView.jsx';
 import './custom.scss';
 
 export default function MainContainer() {
 
-  const [topic, setTopic] = useState('Java');
+  const [topic, setTopic] = useState('all');
+  const [post, setPost] = useState({
+    title: 'React is Hard',
+    topic: 'React',
+    issue: 'I can not get React stuff to work',
+    tried: 'Staring at React for hours',
+    cause: 'I don\'t rigthly know',
+    code:  '<App />',
+    date: '10/5/2021',
+    upvotes: 5000,
+    downvotes: 0,
+    replies: [{content: 'React is really hard'}, {content: 'React is super hard'}],
+  });
 
   return (
     <Container className={classes.mainContainer}>
@@ -22,12 +34,12 @@ export default function MainContainer() {
           <MenuItem>
             <Link to="/home">Home</Link>
           </MenuItem>
-          <MenuItem><Link to="/home/JavaScript">JavaScript</Link></MenuItem>
-          <MenuItem><Link to="/home/Python">Python</Link></MenuItem>
-          <MenuItem><Link to="/home/C#">C#</Link></MenuItem>
-          <MenuItem><Link to="/home/C++">C++</Link></MenuItem>
-          <MenuItem><Link to="/home/Java">Java</Link></MenuItem>
-          <MenuItem><Link to="/home/PHP">PHP</Link></MenuItem>
+          <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
+          <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
+          <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
+          <MenuItem onClick={() => setTopic('c++')}>C++</MenuItem>
+          <MenuItem onClick={() => setTopic('java')}>Java</MenuItem>
+          <MenuItem onClick={() => setTopic('php')}>PHP</MenuItem>
         </Menu>
       </ProSidebar>
       {/* we may need to import other components below */}
@@ -39,15 +51,12 @@ export default function MainContainer() {
         <Route path="/home/createpost">
           <CreatePost />
         </Route>
+        <Route path="/home/postview">
+          <PostView post={post} />
+        </Route>
       </Switch>
-      {/* <main className={classes.codeBlockContainer}>
-        <FeedCodeBlock />
-        <FeedCodeBlock />
-        <FeedCodeBlock />
-        <FeedCodeBlock />
-        <FeedCodeBlock />
-        <FeedCodeBlock />
-      </main> */}
+
+      {/* This makes the createPost button */}
       <div>
         <Link to="/home/createpost">
           <svg
