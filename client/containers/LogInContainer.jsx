@@ -49,7 +49,7 @@ export default function LogInContainer() {
     };
 
     // make fetch request to send new user data
-    fetch('/login/createUser', {
+    fetch('/login/createuser', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -84,7 +84,8 @@ export default function LogInContainer() {
         {/* temp bar to delete after development */}
         <header>
           TEMP NAV BAR: <br />
-          <Link to="/home">Home</Link>
+          <Link to="/home">Home</Link><br />
+          <Link to="/home/postview">Post View</Link>
         </header>
         <h1>Rate-My-Code</h1>
         <form>
