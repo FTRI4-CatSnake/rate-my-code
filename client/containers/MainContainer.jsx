@@ -13,7 +13,7 @@ import './custom.scss';
 
 export default function MainContainer() {
 
-  const [topic, setTopic] = useState('Java');
+  const [topic, setTopic] = useState('all');
   const [post, setPost] = useState({
     title: 'React is Hard',
     topic: 'React',
@@ -24,7 +24,7 @@ export default function MainContainer() {
     date: '10/5/2021',
     upvotes: 5000,
     downvotes: 0,
-    replies: [{text: 'React is really hard'}, {text: 'React is super hard'}],
+    replies: [{content: 'React is really hard'}, {content: 'React is super hard'}],
   });
 
   return (
@@ -34,12 +34,12 @@ export default function MainContainer() {
           <MenuItem>
             <Link to="/home">Home</Link>
           </MenuItem>
-          <MenuItem><Link to="/home/JavaScript">JavaScript</Link></MenuItem>
-          <MenuItem><Link to="/home/Python">Python</Link></MenuItem>
-          <MenuItem><Link to="/home/C#">C#</Link></MenuItem>
-          <MenuItem><Link to="/home/C++">C++</Link></MenuItem>
-          <MenuItem><Link to="/home/Java">Java</Link></MenuItem>
-          <MenuItem><Link to="/home/PHP">PHP</Link></MenuItem>
+          <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
+          <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
+          <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
+          <MenuItem onClick={() => setTopic('c++')}>C++</MenuItem>
+          <MenuItem onClick={() => setTopic('java')}>Java</MenuItem>
+          <MenuItem onClick={() => setTopic('php')}>PHP</MenuItem>
         </Menu>
       </ProSidebar>
       {/* we may need to import other components below */}

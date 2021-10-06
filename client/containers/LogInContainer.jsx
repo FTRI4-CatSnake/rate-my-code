@@ -49,7 +49,7 @@ export default function LogInContainer() {
     };
 
     // make fetch request to send new user data
-    fetch('/login/createUser', {
+    fetch('/login/createuser', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

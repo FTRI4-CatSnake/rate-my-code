@@ -4,7 +4,7 @@ export default function Reply({reply}) {
 
   return (
     <div>
-      {reply.text}
+      {reply.content}
     </div>
   );
 }

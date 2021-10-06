@@ -8,12 +8,12 @@ export default function PostView({post}) {
   const [codeBlocks, setCodeBlocks] = useState([]);
 
   // update state that we fetch
-  fetch('/api/getPost')
-    .then((res) => res.json())
-    .then((data) => {
-      setCodeBlocks(data);
-    })
-    .catch((err) => console.log(err));
+  // fetch('/api/getPost')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setCodeBlocks(data);
+  //   })
+  //   .catch((err) => console.log(err));
 
 
   //UPDATE - just show selected post
