@@ -5,6 +5,22 @@ import ReplyContainer from '../containers/ReplyContainer.jsx';
 
 export default function PostView({post}) {
   // React hooks for state - store the data from the database
+  const [codeBlocks, setCodeBlocks] = useState([]);
+
+  // update state that we fetch
+  fetch('/api/getPost')
+    .then((res) => res.json())
+    .then((data) => {
+      setCodeBlocks(data);
+    })
+    .catch((err) => console.log(err));
+
+
+  //UPDATE - just show selected post
+  // create codeblock components and save them in an array
+  const codeBlockEl = codeBlocks.map((code, i) => {
+    return <FeedCodeBlock key={i} info={code} />;
+  });
 
   //return the PostView with comments below
   return (
