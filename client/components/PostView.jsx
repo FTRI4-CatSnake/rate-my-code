@@ -1,38 +1,27 @@
 import React, { useState } from 'react';
 // import ReactDOM from 'react-dom';
 import FeedCodeBlock from './FeedCodeBlock.jsx';
+import ReplyContainer from '../containers/ReplyContainer.jsx';
 
-export default function PostView() {
-  // have 2 useState hooks
-  // make 2 fetch requests
-    // 1 - to get post
-    // 2 - to get all comments associated with the post
-      // use the map method to save all comments into an array
-  // return
-    // one post
-    // the array of comments
-
-
+export default function PostView({post}) {
   // React hooks for state - store the data from the database
-  const [codeBlocks, setCodeBlocks] = useState([]);
 
-  // update state that we fetch
-  fetch('/api/getPost')
-    .then((res) => res.json())
-    .then((data) => {
-      setCodeBlocks(data);
-    })
-    .catch((err) => console.log(err));
-
-  // create codeblock components and save them in an array
-  const codeBlockEl = codeBlocks.map((code, i) => {
-    return <FeedCodeBlock key={i} info={code} />;
-  });
-
-  // returns code block cards
+  //return the PostView with comments below
   return (
     <div>
-      <div>{codeBlockEl}</div>
+      <div id='post'>
+        <p>{post.title}</p>
+        <p>{post.topic}</p>
+        <p>{post.issue}</p>
+        <p>{post.cause}</p>
+        <p>{post.code}</p>
+        <p>{post.date}</p>
+      </div>
+      <div id='post-rankings'>
+        <p>{post.upvotes}</p>
+        <p>{post.downvotes}</p>
+      </div>
+      <ReplyContainer post={post}/>
     </div>
   );
 }

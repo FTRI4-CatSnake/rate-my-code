@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.jsx';
+import PostView from './components/PostView.jsx';
 import Feed from './components/Feed.jsx';
 import FeedCodeBlock from './components/FeedCodeBlock.jsx'; //delete when we can fetch from database
 import CreatePost from './components/CreatePost.jsx';
@@ -15,6 +16,9 @@ export default function App(props) {
         </Route>
         <Route path="/home">
           <MainContainer />
+        </Route>
+        <Route path="/home/postview">
+          <PostView />
         </Route>
       </Switch>
     </div>
