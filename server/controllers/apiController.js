@@ -6,6 +6,7 @@ const apiController = {};
 apiController.getTopic = (req, res, next) => {
   const topic = req.params.topic; 
 
+  const queryAll = `SELECT * FROM posts`
   const query = {
     text: `
       SELECT *
@@ -15,15 +16,15 @@ apiController.getTopic = (req, res, next) => {
     params: [topic]
   };
 
-  db.query(query.text, query.params, (err, dbResponse) => {
+  db.query(queryAll, (err, dbResponse) => {
     if(err) {
       next({
         log: 'ERROR: apiController.getTopic',
         message: { err: err.message }
       });
     }
-
-    res.locals.topic = dbResponse.rows;
+    console.log(dbResponse);
+    //res.locals.topic = dbResponse.rows;
     return next();
   });
 };
