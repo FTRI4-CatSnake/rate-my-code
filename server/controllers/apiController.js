@@ -6,8 +6,8 @@ const apiController = {};
 apiController.getTopic = (req, res, next) => {
   const topic = req.params.topic; 
 
-  const queryAll = `SELECT * FROM posts`
-  const query = {
+  const queryAll = 'SELECT * FROM posts';
+  const querySingle = {
     text: `
       SELECT *
       FROM posts
@@ -15,18 +15,32 @@ apiController.getTopic = (req, res, next) => {
     `,
     params: [topic]
   };
-
-  db.query(queryAll, (err, dbResponse) => {
-    if(err) {
-      next({
-        log: 'ERROR: apiController.getTopic',
-        message: { err: err.message }
-      });
-    }
-    console.log(dbResponse);
-    //res.locals.topic = dbResponse.rows;
-    return next();
-  });
+  if(topic == 'all'){
+    db.query(queryAll, (err, dbResponse) => {
+      if(err) {
+        next({
+          log: 'ERROR: apiController.getTopic',
+          message: { err: err.message }
+        });
+      }
+      //console.log(dbResponse);
+      res.locals.topic = dbResponse.rows;
+      return next();
+    });
+  }
+  else{
+    db.query(querySingle.text, querySingle.params, (err, dbResponse) => {
+      if(err) {
+        next({
+          log: 'ERROR: apiController.getTopic',
+          message: { err: err.message }
+        });
+      }
+      //console.log(dbResponse);
+      res.locals.topic = dbResponse.rows;
+      return next();
+    });
+  }
 };
 
 apiController.getPost = (req, res, next) => {
@@ -48,7 +62,7 @@ apiController.getPost = (req, res, next) => {
         message: { err: err.message }
       });
     }
-    console.log(dbResponse)
+    //console.log(dbResponse)
 
     res.locals.post.postContent = dbResponse.rows[0];
     return next();

@@ -5,8 +5,8 @@ const loginController = {};
 
 /*Get user specified in req.body in getUser store in res.locals.user */
 loginController.getUser = async (req, res, next) => {
-  const { username } = req.body;
-  console.log(username);
+  const { username } = req.params;
+  //console.log(username);
   // Construct a DB query for username
   const query = {
     text: `
@@ -25,7 +25,9 @@ loginController.getUser = async (req, res, next) => {
         message: { err: err.message }
       });
     }
+    console.log(dbResponse.rows);
     if(dbResponse.rows[0])  res.locals.user = dbResponse.rows[0];
+    console.log(res.locals.user);
     return next();
   });
 
