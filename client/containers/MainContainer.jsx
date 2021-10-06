@@ -10,10 +10,20 @@ import Feed from '../components/Feed.jsx';
 
 import classes from './MainContainer.module.css';
 import './custom.scss';
+import { javascript } from 'webpack';
 
 export default function MainContainer() {
 
-  const [topic, setTopic] = useState('Java');
+  const [topic, setTopic] = useState('all');
+
+
+  //I think the ':topic' fetch request function that's currently in Feed.jsx should be imported here, and incorporated into a function that incorporates 'setTopic' (to update state).
+
+  /*
+  1. each link changes 'topic' in state
+  2. when topic changes, feed re-renders based on new topic
+  3. fetch request is initiated when props.topic is changed 
+  */
 
   return (
     <Container className={classes.mainContainer}>
@@ -22,12 +32,12 @@ export default function MainContainer() {
           <MenuItem>
             <Link to="/home">Home</Link>
           </MenuItem>
-          <MenuItem><Link to="/home/JavaScript">JavaScript</Link></MenuItem>
-          <MenuItem><Link to="/home/Python">Python</Link></MenuItem>
-          <MenuItem><Link to="/home/C#">C#</Link></MenuItem>
-          <MenuItem><Link to="/home/C++">C++</Link></MenuItem>
-          <MenuItem><Link to="/home/Java">Java</Link></MenuItem>
-          <MenuItem><Link to="/home/PHP">PHP</Link></MenuItem>
+          {/* <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem> */}
+          <MenuItem><Link to="/home/python">Python</Link></MenuItem>
+          <MenuItem><Link to="/home/c#">C#</Link></MenuItem>
+          <MenuItem><Link to="/home/c++">C++</Link></MenuItem>
+          <MenuItem><Link to="/home/java">Java</Link></MenuItem>
+          <MenuItem><Link to="/home/php">PHP</Link></MenuItem>
         </Menu>
       </ProSidebar>
       {/* we may need to import other components below */}
