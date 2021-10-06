@@ -21,7 +21,7 @@ export default function Feed(props) {
 
   // returns code block cards
   return (
-    <div>
+    <div id='feed'>
       <div>{codeBlockEl}</div>
     </div>
   );

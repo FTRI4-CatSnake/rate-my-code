@@ -34,6 +34,7 @@ export default function MainContainer() {
           <MenuItem>
             <Link to="/home">Home</Link>
           </MenuItem>
+          {/* //make sure these work without links */}
           <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
           <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
           <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>

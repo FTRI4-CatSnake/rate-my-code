@@ -38,7 +38,7 @@ export default function CreatePost() {
     };
 
     // create fetch request to POST the new post
-    fetch('/api/createPost', {
+    fetch('/api/createpost', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
