@@ -15,6 +15,7 @@ export default function Feed(props) {
       setCodeBlocks(data);
     })
     .catch((err) => console.log(err));
+  
 
   // create codeblock components and save them in an array
   const codeBlockEl = codeBlocks.map(post => {
