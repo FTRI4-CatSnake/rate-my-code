@@ -32,7 +32,8 @@ export default function LogInContainer() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(Object.prototype.hasOwnProperty.call(data, 'message')){
+        if(!data.success){
+          console.log('wtf');
           setVerified(false);
         }
         else{

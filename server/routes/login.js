@@ -41,10 +41,15 @@ router.post('/',
   //loginController.verifyUser,
   // loginController.setCookie,
   (req, res) => {
+    const userInfo = {success: true};
     if (res.locals.user == false) {
-      res.status(400).json({ message: 'Could not verify login credentials' });
+      userInfo.success = false;
     }
-    res.status(200).json({userID: res.locals.user._id});
+    else{
+      userInfo.success = true;
+      userInfo.userID = res.locals.user._id;
+    }
+    res.status(200).json(userInfo);
   });
 
 // export as router
