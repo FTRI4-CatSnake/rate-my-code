@@ -16,26 +16,28 @@ export default function PostView({post}) {
 
   //return the PostView with comments below
   return (
-    <Container className={classes.insideContainer}>
-      <header className={classes.postHeader}>
-        <p>{post.title}</p>
-        <p>{post.date}</p>
-      </header>
-      <div className={classes.postTopic}>
-        <p>{post.topic}</p>
-      </div>
-      <div className={classes.postDescription}>
-        <p>{post.issue}</p>
-        <p>{post.cause}</p>
-      </div>
-      <div className={classes.postCode}>
-        <p><code>{post.code}</code></p>
-      </div>
-      <div className={classes.postRankings}>
-        <p>upvotes: {post.upvotes}</p>
-        <p>downvotes: {post.downvotes}</p>
-      </div>
-      <ReplyContainer post={post}/>
+    <Container className={classes.mainContainer}>
+      <Container className={classes.insideContainer}>
+        <header className={classes.postHeader}>
+          <p>{post.title}</p>
+          <p>{post.date}</p>
+        </header>
+        <div className={classes.postTopic}>
+          <p>{post.topic}</p>
+        </div>
+        <div className={classes.postDescription}>
+          <p>{post.issue}</p>
+          <p>{post.cause}</p>
+        </div>
+        <div className={classes.postCode}>
+          <p><code>{post.code}</code></p>
+        </div>
+        <div className={classes.postRankings}>
+          <p>upvotes: {post.upvotes}</p>
+          <p>downvotes: {post.downvotes}</p>
+        </div>
+        <ReplyContainer post={post}/>
+      </Container>
     </Container>
  
 

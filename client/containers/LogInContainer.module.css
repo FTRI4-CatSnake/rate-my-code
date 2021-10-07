@@ -36,4 +36,9 @@
 
 .postDescription, .postCode, .postRankings {
   border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.replies {
+  padding-top: 10px;
 }

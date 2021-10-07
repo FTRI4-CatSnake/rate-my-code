@@ -6,8 +6,22 @@
   text-decoration: none;
   margin-bottom: 2em;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+
 }
 
-.codeBlock h2 {
+.codeBlock a {
+  text-decoration: none;
 }
+
+.codeBlock code {
+  overflow: hidden;
+  border: 1px solid black;
+  padding: 5px;
+  max-width: 100%;
+}
+

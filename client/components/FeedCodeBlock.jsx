@@ -14,10 +14,8 @@ export default function FeedCodeBlock(props) {
       onClick={() => props.clickHandler(props.post)}
       >
         <div className={classes.codeBlock}>
-          <div>
-            <h2>{props.post.title}</h2>
-            <code>{props.post.code}</code>
-          </div>
+          <h2>{props.post.title}</h2>
+          <code>{props.post.code}</code>
         </div>
       </Link>
     </section>
