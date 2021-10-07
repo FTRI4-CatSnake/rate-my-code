@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import ReactDOM from 'react-dom';
 import FeedCodeBlock from './FeedCodeBlock.jsx';
 
@@ -10,12 +10,19 @@ export default function Feed(props) {
 
 
   // update state that we fetch
-  fetch(`/api/gettopic/${props.topic}`) //removed /topic
-    .then((res) => res.json())
-    .then((data) => {
-      setCodeBlocks(data);
-    })
-    .catch((err) => console.log(err));
+
+  function getFeed() {
+    fetch(`/api/gettopic/${props.topic}`) //removed /topic
+      .then((res) => res.json())
+      .then((data) => {
+        setCodeBlocks(data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    getFeed();
+  }, []);
   
 
   // create codeblock components and save them in an array called 'codeBlockEl'
