@@ -229,39 +229,26 @@ apiController.editPost = (req, res, next) => {
 };
 
 apiController.createComment = (req, res, next) => {
-  const user_id = req.headers.cookie;
-  
+
   const { 
-    comment,
-    code,
-    upvotes,
-    downvotes,
-    date,
-    post_id
-  } = req.body.createComment;
-  
+    post_id,
+    user_id, 
+    reply
+  } = req.body;
+
   const query = {
     text: `
       INSERT INTO comments (
-        comment,
-        code,
-        upvotes,
-        downvotes,
-        date,
+        reply,
         post_id,
         user_id
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING *;
+      VALUES ($1, $2, $3, $4, $5, $6, $7);
     `,
     params: [
-      comment,
-      code,
-      upvotes,
-      downvotes,
-      date,
       post_id,
-      user_id
+      user_id,
+      reply
     ]
   };
 

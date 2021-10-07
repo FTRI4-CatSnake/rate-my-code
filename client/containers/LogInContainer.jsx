@@ -61,8 +61,10 @@ export default function LogInContainer() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data) {
+        if(!data.success){
+          setSignedup(false);
+        }
+        else{
           setSignedup(true);
         }
       })

@@ -20,6 +20,7 @@ loginController.getUser = async (req, res, next) => {
   // Query our DB o find username store result in res.locals.user
   db.query(query.text, query.params, (err, dbResponse) => {
     if(err) {
+      console.log(err.message);
       next({
         log: 'ERROR: loginController.getUser',
         message: { err: err.message }
@@ -58,33 +59,33 @@ loginController.verifyUser = (req, res, next) => {
   If user not found, create user in database, store new user in res.locals.user and move on
 */     
 loginController.createUser = (req, res, next) => {
-  if(res.locals.user) {
-    delete res.locals.user;
-    return next();
-  }
+  //probably don't need this right now
+  // if(res.locals.user) {
+  //   delete res.locals.user;
+  //   return next();
+  // }
+  
   const { username, password } = req.body;
-
+  console.log(req.body);
   const query = {
     text: `
-      INSERT INTO users (username, password)
-      VALUES ($1, $2)
-      RETURNING _id;
+      INSERT INTO users (username, pass)
+      VALUES ($1, $2);
     `,
     params: [username, password]
   };
   
-  
-  db.query(query.text, query.params, (err, dbResponse) => {
-    if(err) {
+  db.query(query.text, query.params)
+    .then(dbResponse=>{
+      return next();
+    })
+    .catch((err)=>{
+      console.log(err.message);
       next({
         log: 'ERROR: loginController.createUser',
         message: { err: err.message }
       });
-    }
-    console.log(dbResponse);
-    res.locals.user = dbResponse.rows[0];
-    return next();
-  });
+    });
 };
 
 loginController.setCookie = (req, res, next) => {
