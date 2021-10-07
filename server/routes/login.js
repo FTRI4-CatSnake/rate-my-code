@@ -17,19 +17,21 @@ const router = express.Router();
     If created succesfully redirect them to the main container
     If unsucsessful return message that could not create user
 */
-router.post('/createUser',
+
+router.post('/createuser',
   //loginController.getUser,
   loginController.createUser,
   //loginController.setCookie,
   (req, res) => {
-    const userInfo = {success: true};
-    if (res.locals.user == false) {
-      userInfo.success = false;
-    }
-    else{
-      userInfo.success = true;
-      userInfo.userID = res.locals.user._id;
-    }
+    const userInfo = {success: true, userID: res.locals.user._id};
+    // if (res.locals.user == false) {
+    //   userInfo.success = false;
+    // }
+    // else{
+    //   userInfo.success = true;
+    //   userInfo.userID = res.locals.user._id;
+    // }
+    // console.log(userInfo);
     res.status(200).json(userInfo);
   });
 
@@ -53,6 +55,7 @@ router.post('/',
     else{
       userInfo.success = true;
       userInfo.userID = res.locals.user._id;
+      userInfo.username = res.locals.user.username;
     }
     res.status(200).json(userInfo);
   });
