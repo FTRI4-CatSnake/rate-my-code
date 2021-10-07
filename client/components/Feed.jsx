@@ -22,9 +22,8 @@ export default function Feed(props) {
 
   useEffect(() => {
     getFeed();
-  }, []);
+  },[props.topic]);
   
-
   // create codeblock components and save them in an array called 'codeBlockEl'
   const codeBlockEl = codeBlocks.map(post => {
     return (
@@ -39,6 +38,7 @@ export default function Feed(props) {
   // returns code block cards
   return (
     <div id='feed'>
+      <h1>Welcome to Rate-My-Code</h1>
       {codeBlockEl}
     </div>
   );

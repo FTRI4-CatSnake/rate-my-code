@@ -36,15 +36,20 @@ router.post('/createUser',
   Finally, if we have succesfully verified a user(data is in res.locals.user) redirect to main container. If failed to verify user, send failure message
 */
 
-router.get('/:username',
+router.post('/',
   loginController.getUser,
-  loginController.verifyUser,
+  //loginController.verifyUser,
   // loginController.setCookie,
-  (req, res, next) => {
-    if (!res.locals.user) {
-      res.status(400).json({ message: 'Could not verify login credentials' });
+  (req, res) => {
+    const userInfo = {success: true};
+    if (res.locals.user == false) {
+      userInfo.success = false;
     }
-    res.status(200).json({userID: res.locals.user._id});
+    else{
+      userInfo.success = true;
+      userInfo.userID = res.locals.user._id;
+    }
+    res.status(200).json(userInfo);
   });
 
 // export as router
