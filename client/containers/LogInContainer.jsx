@@ -22,13 +22,22 @@ export default function LogInContainer() {
       password: enteredPassword,
     };
 
-    console.log('About to fetch in loginContainer:', user);
+    console.log('About to fetch in test loginContainer:', user);
     // make fetch request to check login data
-    fetch(`/login/${enteredUsername}`)
+    fetch('/login',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON'
+      },
+      body: JSON.stringify(user)
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data) {
+        if(!data.success){
+          console.log('wtf');
+          setVerified(false);
+        }
+        else{
           setVerified(true);
         }
       })
