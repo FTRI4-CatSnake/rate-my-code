@@ -28,7 +28,16 @@ import FeedCodeBlock from './FeedCodeBlock.jsx';
 
 
 const theme = createTheme();
-const drawerWidth = 200;
+
+const headingFont = createTheme({
+  typography: {
+    fontFamily: [
+      'PT Mono',
+      'monospace'
+    ].join(','),
+    fontSize: 24,
+  }
+})
 
 
 export default function ThemedFeed(props) {
@@ -75,15 +84,17 @@ export default function ThemedFeed(props) {
           }}
         >
           <Container maxWidth='sm'>
-            <Typography 
-              component='h1'
-              variant='h2'
-              align='center'
-              color='text.primary'
-              gutterBottom
-            >
-              Welcome to Rate-My-Code
-            </Typography>
+            <ThemeProvider theme={headingFont}>
+              <Typography
+                component='h1'
+                variant='h2'
+                align='center'
+                color='text.primary'
+                gutterBottom
+              >
+              Welcome to RATE-MY-C0D3
+              </Typography>
+            </ThemeProvider>
             <Typography variant='h5' align='center' color='text.secondary' paragraph>
               Rate-My-Code is a supportive online community where you can post blocks of code that are not acting as you expect them to.
             </Typography>
