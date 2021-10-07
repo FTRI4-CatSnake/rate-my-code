@@ -16,6 +16,7 @@ export default function MainContainer() {
   const [topic, setTopic] = useState('all');
   const [selectedPost, setSelectedPost] = useState({});
 
+
   function handlePostClick(clickedPost) {
     setSelectedPost(clickedPost);
   }
@@ -64,5 +65,3 @@ export default function MainContainer() {
     </Container>
   );
 }
-
-// //@import '~react-pro-sidebar/dist/scss/styles.scss'; for styles.scss

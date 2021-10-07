@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import classes from './LogInContainer.module.css';
 
 
-export default function LogInContainer() {
+export default function LogInContainer(props) {
   const [verified, setVerified] = useState(false);
   const [signedup, setSignedup] = useState(false);
 
@@ -34,45 +34,19 @@ export default function LogInContainer() {
       .then((res) => res.json())
       .then((data) => {
         if(!data.success){
-          console.log('wtf');
+          console.log('login unsucessful');
           setVerified(false);
         }
         else{
           setVerified(true);
+          props.uidSetter(data.userID);
         }
       })
       .catch((err) => console.log('GET REQUEST ERROR: ', err));
   }
 
-  function signup() {
-    const enteredUsername = usernameInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const user = {
-      username: enteredUsername,
-      password: enteredPassword,
-    };
-
-    // make fetch request to send new user data
-    fetch('/login/createuser', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data) {
-          setSignedup(true);
-        }
-      })
-      .catch((err) => console.log('POST REQUEST ERROR: ', err));
-  }
-
-  //redirect if login is verified or successfully signedup
-
-  if (verified || signedup) {
+  //redirect if login is verified
+  if (verified) {
     return (
       <Redirect
         to={{
@@ -83,45 +57,43 @@ export default function LogInContainer() {
   }
 
   return (
-    // <Container className={classes.mainContainer}>
-      <Container className={classes.insideContainer}>
-        {/* temp bar to delete after development */}
-        <header>
-          TEMP NAV BAR: <br />
-          <Link to="/home">Home</Link><br />
-        </header>
-        <h1>Rate-My-Code</h1>
-        <form>
-          <div className={classes.inputContainer}>
-            <label htmlFor="username">Username </label>
-            <input
-              type="text"
-              required
-              id="username"
-              ref={usernameInputRef}
-            ></input>
-          </div>
-          <div className={classes.inputContainer}>
-            <label htmlFor="password">Password </label>
-            <input
-              type="password"
-              required
-              id="password"
-              ref={passwordInputRef}
-            ></input>
-          </div>
-          <div className={classes.buttonContainer}>
-            <Button variant="contained" onClick={login}>
-              Login
-            </Button>
-          </div>
-          <div className={classes.buttonContainer}>
-            <Button variant="outlined" onClick={signup}>
-              Signup
-            </Button>
-          </div>
-        </form>
-      </Container>
-    // </Container>
+    <Container className={classes.insideContainer}>
+      {/* temp bar to delete after development */}
+      <header>
+        TEMP NAV BAR: <br />
+        <Link to="/home">Home</Link><br />
+      </header>
+      <h1>Rate-My-Code</h1>
+      <form>
+        <div className={classes.inputContainer}>
+          <label htmlFor="username">Username </label>
+          <input
+            type="text"
+            required
+            id="username"
+            ref={usernameInputRef}
+          ></input>
+        </div>
+        <div className={classes.inputContainer}>
+          <label htmlFor="password">Password </label>
+          <input
+            type="password"
+            required
+            id="password"
+            ref={passwordInputRef}
+          ></input>
+        </div>
+        <div className={classes.buttonContainer}>
+          <Button variant="contained" onClick={login}>
+            Login
+          </Button>
+        </div>
+        <div className={classes.buttonContainer} onClick={props.accountCreationToggle}>
+          <Button variant="outlined" >
+            Signup
+          </Button>
+        </div>
+      </form>
+    </Container>
   );
 }

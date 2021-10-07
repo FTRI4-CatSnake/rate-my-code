@@ -12,9 +12,11 @@ export default function Feed(props) {
   // update state that we fetch
 
   function getFeed() {
+    console.log(`/api/gettopic/${props.topic}`);
     fetch(`/api/gettopic/${props.topic}`) //removed /topic
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setCodeBlocks(data);
       })
       .catch((err) => console.log(err));

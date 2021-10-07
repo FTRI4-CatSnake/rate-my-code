@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import classes from './SignupModal.module.css';
 
 //create the SignupModal Class
-export default function SignupModal() {
+export default function SignupModal(props) {
   const [verified, setVerified] = useState(false);
   const [signedup, setSignedup] = useState(false);
 
@@ -34,64 +34,46 @@ export default function SignupModal() {
       .then((data) => {
         console.log(data);
         if (data) {
-          setSignedup(true);
+          props.accountCreateToggle();
         }
       })
       .catch((err) => console.log('POST REQUEST ERROR: ', err));
   }
 
-  //create the cancel function
-  function cancel() {
-    console.log('test');
-  }
-
-  //this should change the modal to be hidden
-  if (verified || signedup) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/home',
-        }}
-      />
-    );
-  }
-
   return (
-    // <Container className={classes.mainContainer}>
-      <Container className={classes.insideContainer}>
-        {/* temp bar to delete after development */}
-        <h1 style={{textAlign: 'center'}}>Sign up for <br /> Rate-My-Code!</h1>
-        <form>
-          <div className={classes.inputContainer}>
-            <label htmlFor="username">Username </label>
-            <input
-              type="text"
-              required
-              id="username"
-              ref={usernameInputRef}
-            ></input>
-          </div>
-          <div className={classes.inputContainer}>
-            <label htmlFor="password">Password </label>
-            <input
-              type="password"
-              required
-              id="password"
-              ref={passwordInputRef}
-            ></input>
-          </div>
-          <div className={classes.buttonContainer}>
-            <Button variant="contained" onClick={signup}>
-              Sign Up
-            </Button>
-          </div>
-          <div className={classes.buttonContainer}>
-            <Button variant="outlined" onClick={cancel}>
-              Cancel
-            </Button>
-          </div>
-        </form>
-      </Container>
-    // </Container>
+    <Container className={classes.insideContainer}>
+      {/* temp bar to delete after development */}
+      <h1 style={{textAlign: 'center'}}>Sign up for <br /> Rate-My-Code!</h1>
+      <form>
+        <div className={classes.inputContainer}>
+          <label htmlFor="username">Username </label>
+          <input
+            type="text"
+            required
+            id="username"
+            ref={usernameInputRef}
+          ></input>
+        </div>
+        <div className={classes.inputContainer}>
+          <label htmlFor="password">Password </label>
+          <input
+            type="password"
+            required
+            id="password"
+            ref={passwordInputRef}
+          ></input>
+        </div>
+        <div className={classes.buttonContainer}>
+          <Button variant="contained" onClick={signup}>
+            Sign Up
+          </Button>
+        </div>
+        <div className={classes.buttonContainer}>
+          <Button variant="outlined" onClick={props.accountCreationToggle}>
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </Container>
   );
 }
