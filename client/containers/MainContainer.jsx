@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLocation } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
@@ -14,18 +14,25 @@ import './custom.scss';
 export default function MainContainer() {
 
   const [topic, setTopic] = useState('all');
-  const [post, setPost] = useState({
-    title: 'React is Hard',
-    topic: 'React',
-    issue: 'I can not get React stuff to work',
-    tried: 'Staring at React for hours',
-    cause: 'I don\'t rigthly know',
-    code:  '<App />',
-    date: '10/5/2021',
-    upvotes: 5000,
-    downvotes: 0,
-    replies: [{content: 'React is really hard'}, {content: 'React is super hard'}],
-  });
+  
+  // const [post, setPost] = useState({
+  //   title: 'React is Hard',
+  //   topic: 'React',
+  //   issue: 'I can not get React stuff to work',
+  //   tried: 'Staring at React for hours',
+  //   cause: 'I don\'t rigthly know',
+  //   code:  '<App />',
+  //   date: '10/5/2021',
+  //   upvotes: 5000,
+  //   downvotes: 0,
+  //   replies: [{content: 'React is really hard'}, {content: 'React is super hard'}],
+  // });
+  const [post, setPost] = useState({});
+
+  function handleChange(newValue) {
+    setPost(newValue);
+  }
+  
 
   return (
     <Container className={classes.mainContainer}>
@@ -47,7 +54,7 @@ export default function MainContainer() {
       <Switch>
         <Route path="/home" exact>
           <h1>Welcome to Rate-My-Code</h1>
-          <Feed topic={topic} />
+          <Feed clickHandler={handleChange} topic={topic} />
         </Route>
         <Route path="/home/createpost">
           <CreatePost />
