@@ -41,7 +41,7 @@ export default function CreatePost() {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
       },
       body: JSON.stringify(createdPost)
     })
