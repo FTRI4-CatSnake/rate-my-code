@@ -6,7 +6,7 @@ import ReplyContainer from '../containers/ReplyContainer.jsx';
 export default function PostView({post}) {
   // React hooks for state - store the data from the database
   const [codeBlocks, setCodeBlocks] = useState([]);
-
+  
   // update state that we fetch
   // fetch('/api/getPost')
   //   .then((res) => res.json())
