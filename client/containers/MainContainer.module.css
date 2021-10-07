@@ -1,15 +1,21 @@
 .mainContainer {
-  display: flex !important;
+  display: flex;
   justify-content: space-between;
+}
+
+.flexContainer {
+  display: flex;
 }
 
 .sidebar {
   /* background-color: white; */
   color: black;
+  height: 100vh;
 }
 
 .codeBlockContainer {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
   justify-content: space-around;
 }

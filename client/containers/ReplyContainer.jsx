@@ -1,5 +1,7 @@
+import { ClassNames } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import Reply from '../components/Reply.jsx';
+import classes from './LogInContainer.module.css';
 
 export default function ReplyContainer({post}) {
   //create hook to set replies
@@ -31,7 +33,7 @@ export default function ReplyContainer({post}) {
     return <Reply key={i} reply={reply} />;
   });
   return (
-    <div>
+    <div className={classes.replies}>
       Replies:
       {repliesComponents}
     </div>
