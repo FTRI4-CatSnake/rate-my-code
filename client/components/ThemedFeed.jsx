@@ -7,7 +7,16 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+
+import Drawer from '@mui/material/Drawer';
 import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,6 +28,7 @@ import FeedCodeBlock from './FeedCodeBlock.jsx';
 
 
 const theme = createTheme();
+const drawerWidth = 200;
 
 
 export default function ThemedFeed(props) {
@@ -54,13 +64,6 @@ export default function ThemedFeed(props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar postition='relative'>
-        <Toolbar>
-          <Typography variant='h6' colors='inherit' noWrap>
-            Filter Posts by Topic
-          </Typography>
-        </Toolbar>
-      </AppBar>
 
       <main>
         {/*Hero*/}
@@ -88,9 +91,12 @@ export default function ThemedFeed(props) {
             <Stack
               sx={{ pt: 4 }}
               direction='row'
-              spacing={2}
+              align='center'
+              spacing={4}
             >
-              <Button variant="contained">Add A Post</Button>
+              <Button variant='contained' align='center'>Add A Post</Button>
+              <Button variant="outlined">Secondary action</Button>
+
             </Stack>
           </Container>
         </Box>

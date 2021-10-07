@@ -1,15 +1,30 @@
 import React, { useState, useLocation } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
 import Container from '@mui/material/Container';
 import 'react-pro-sidebar/dist/css/styles.css';
+
+import Toolbar from '@mui/material/Toolbar';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+
+import Drawer from '@mui/material/Drawer';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 import classes from './MainContainer.module.css';
 import ThemedFeed from '../components/ThemedFeed.jsx';
 import CreatePost from '../components/CreatePost.jsx';
 import PostView from '../components/PostView.jsx';
 import './custom.scss';
+
+const drawerWidth = 200;
+
 
 export default function MainContainer() {
 
@@ -22,28 +37,50 @@ export default function MainContainer() {
  
   return (
     <Container className={classes.mainContainer}>
-      <ProSidebar className={classes.sidebar}>
-        <Menu iconShape="square">
-          <MenuItem onClick={() => setTopic('all')}>All Posts</MenuItem>
-          <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
-          <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
-          <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
-          <MenuItem onClick={() => setTopic('c++')}>C++</MenuItem>
-          <MenuItem onClick={() => setTopic('java')}>Java</MenuItem>
-          <MenuItem onClick={() => setTopic('php')}>PHP</MenuItem>
-        </Menu>
-      </ProSidebar>
-      <Switch>
-        <Route path="/home" exact>
-          <ThemedFeed clickHandler={handlePostClick} topic={topic} />
-        </Route>
-        <Route path="/home/createpost">
-          <CreatePost />
-        </Route>
-        <Route path="/home/postview">
-          <PostView post={selectedPost} />
-        </Route>
-      </Switch>
+      <div className={classes.flexContainer}>
+        <div className={classes.leftonethird}>
+          <Drawer
+            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              '& .MuiDrawer-paper': {
+                width: drawerWidth,
+                boxSizing: 'border-box',
+              },
+            }}
+            variant="permanent"
+            anchor="left"
+          >
+            <Toolbar />
+            <Divider />
+            {/* <List> */}
+            <List>
+              <ListItem button key={'all'} onClick={() => setTopic('all')}>All Posts</ListItem>
+              <ListItem button key={'javascript'} onClick={() => setTopic('javascript')}>JavaScript</ListItem>
+              <ListItem button key={'python'} onClick={() => setTopic('python')}>Python</ListItem>
+              <ListItem button key={'c#'} onClick={() => setTopic('c#')}>C#</ListItem>
+              <ListItem button key={'c++'} onClick={() => setTopic('c++')}>C++</ListItem>
+              <ListItem button key={'java'}onClick={() => setTopic('java')}>Java</ListItem>
+              <ListItem button key={'php'} onClick={() => setTopic('php')}>PHP</ListItem>
+            </List>
+            {/* </List> */}
+            <Divider />
+          </Drawer>
+        </div>
+        <div className={classes.righttwothirds}>
+          <Switch>
+            <Route path="/home" exact>
+              <ThemedFeed clickHandler={handlePostClick} topic={topic} />
+            </Route>
+            <Route path="/home/createpost">
+              <CreatePost />
+            </Route>
+            <Route path="/home/postview">
+              <PostView post={selectedPost} />
+            </Route>
+          </Switch>
+        </div>
+      </div>
 
       {/* This makes the createPost button */}
       <div>
