@@ -19,14 +19,12 @@ export default function MainContainer() {
   function handlePostClick(clickedPost) {
     setSelectedPost(clickedPost);
   }
-
+ 
   return (
     <Container className={classes.mainContainer}>
       <ProSidebar className={classes.sidebar}>
         <Menu iconShape="square">
-          <MenuItem>
-            <Link to="/home">Home</Link>
-          </MenuItem>
+          <MenuItem onClick={() => setTopic('all')}>All Posts</MenuItem>
           <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
           <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
           <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
@@ -37,7 +35,6 @@ export default function MainContainer() {
       </ProSidebar>
       <Switch>
         <Route path="/home" exact>
-          <h1>Welcome to Rate-My-Code</h1>
           <Feed clickHandler={handlePostClick} topic={topic} />
         </Route>
         <Route path="/home/createpost">
