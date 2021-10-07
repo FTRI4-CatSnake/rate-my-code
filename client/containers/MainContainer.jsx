@@ -14,25 +14,11 @@ import './custom.scss';
 export default function MainContainer() {
 
   const [topic, setTopic] = useState('all');
-  
-  // const [post, setPost] = useState({
-  //   title: 'React is Hard',
-  //   topic: 'React',
-  //   issue: 'I can not get React stuff to work',
-  //   tried: 'Staring at React for hours',
-  //   cause: 'I don\'t rigthly know',
-  //   code:  '<App />',
-  //   date: '10/5/2021',
-  //   upvotes: 5000,
-  //   downvotes: 0,
-  //   replies: [{content: 'React is really hard'}, {content: 'React is super hard'}],
-  // });
-  const [post, setPost] = useState({});
+  const [selectedPost, setSelectedPost] = useState({});
 
-  function handleChange(newValue) {
-    setPost(newValue);
+  function handlePostClick(clickedPost) {
+    setSelectedPost(clickedPost);
   }
-  
 
   return (
     <Container className={classes.mainContainer}>
@@ -41,7 +27,6 @@ export default function MainContainer() {
           <MenuItem>
             <Link to="/home">Home</Link>
           </MenuItem>
-          {/* //make sure these work without links */}
           <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
           <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
           <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
@@ -50,17 +35,16 @@ export default function MainContainer() {
           <MenuItem onClick={() => setTopic('php')}>PHP</MenuItem>
         </Menu>
       </ProSidebar>
-      {/* we may need to import other components below */}
       <Switch>
         <Route path="/home" exact>
           <h1>Welcome to Rate-My-Code</h1>
-          <Feed clickHandler={handleChange} topic={topic} />
+          <Feed clickHandler={handlePostClick} topic={topic} />
         </Route>
         <Route path="/home/createpost">
           <CreatePost />
         </Route>
         <Route path="/home/postview">
-          <PostView post={post} />
+          <PostView post={selectedPost} />
         </Route>
       </Switch>
 

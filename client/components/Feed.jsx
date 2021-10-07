@@ -31,7 +31,7 @@ export default function Feed(props) {
       <FeedCodeBlock 
         key={post._id} 
         post={post}
-        onClick = {props.clickHandler}
+        clickHandler = {props.clickHandler}
       />
     );
   });
