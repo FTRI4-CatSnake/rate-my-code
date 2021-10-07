@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import classes from './FeedCodeBlock.module.css';
 
 export default function FeedCodeBlock(props) {
-  
   return (
     <section>
       <Link to={{
