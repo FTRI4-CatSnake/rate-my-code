@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-// import ReactDOM from 'react-dom';
 import FeedCodeBlock from './FeedCodeBlock.jsx';
 import ReplyContainer from '../containers/ReplyContainer.jsx';
 
 export default function PostView({post}) {
   // React hooks for state - store the data from the database
   const [codeBlocks, setCodeBlocks] = useState([]);
-  
+    
   //UPDATE - just show selected post
   // create codeblock components and save them in an array
   const codeBlockEl = codeBlocks.map((code, i) => {

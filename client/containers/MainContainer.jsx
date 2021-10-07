@@ -1,4 +1,4 @@
-import React, { useState, useLocation } from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 

@@ -1,40 +1,19 @@
 import React, { useState, useRef } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
-import classes from './LogInContainer.module.css';
+import classes from './SignupModal.module.css';
 
-
-export default function LogInContainer() {
+//create the SignupModal Class
+export default function SignupModal() {
   const [verified, setVerified] = useState(false);
   const [signedup, setSignedup] = useState(false);
 
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
 
-  function login() {
-    const enteredUsername = usernameInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const user = {
-      username: enteredUsername,
-      password: enteredPassword,
-    };
-
-    console.log('About to fetch in loginContainer:', user);
-    // make fetch request to check login data
-    fetch(`/login/${enteredUsername}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data) {
-          setVerified(true);
-        }
-      })
-      .catch((err) => console.log('GET REQUEST ERROR: ', err));
-  }
-
+  //create the signup function
   function signup() {
     const enteredUsername = usernameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
@@ -43,7 +22,7 @@ export default function LogInContainer() {
       password: enteredPassword,
     };
 
-    // make fetch request to send new user data
+    // send new user data to the DB
     fetch('/login/createuser', {
       method: 'POST',
       headers: {
@@ -61,8 +40,12 @@ export default function LogInContainer() {
       .catch((err) => console.log('POST REQUEST ERROR: ', err));
   }
 
-  //redirect if login is verified or successfully signedup
+  //create the cancel function
+  function cancel() {
+    console.log('test');
+  }
 
+  //this should change the modal to be hidden
   if (verified || signedup) {
     return (
       <Redirect
@@ -77,11 +60,7 @@ export default function LogInContainer() {
     // <Container className={classes.mainContainer}>
       <Container className={classes.insideContainer}>
         {/* temp bar to delete after development */}
-        <header>
-          TEMP NAV BAR: <br />
-          <Link to="/home">Home</Link><br />
-        </header>
-        <h1>Rate-My-Code</h1>
+        <h1 style={{textAlign: 'center'}}>Sign up for <br /> Rate-My-Code!</h1>
         <form>
           <div className={classes.inputContainer}>
             <label htmlFor="username">Username </label>
@@ -102,13 +81,13 @@ export default function LogInContainer() {
             ></input>
           </div>
           <div className={classes.buttonContainer}>
-            <Button variant="contained" onClick={login}>
-              Login
+            <Button variant="contained" onClick={signup}>
+              Sign Up
             </Button>
           </div>
           <div className={classes.buttonContainer}>
-            <Button variant="outlined" onClick={signup}>
-              Signup
+            <Button variant="outlined" onClick={cancel}>
+              Cancel
             </Button>
           </div>
         </form>
