@@ -11,7 +11,7 @@ const router = express.Router();
 // Receive a topicID the req.body
 // Use getTopic to retrieve the requested topicID and store in res.locals.topic
 // Return the res.locals.topic as json data
-router.get('/getTopic/:topic', apiController.getTopic, (req, res) => {
+router.get('/gettopic/:topic', apiController.getTopic, (req, res) => {
   if(!res.locals.topic) {
     res.status(200).json({message: 'No posts have been created'});
   }
@@ -28,7 +28,7 @@ router.get('/getPost/:id', apiController.getPost, apiController.getComments, (re
 });
 
 // Handle POST request to /createPost  
-router.post('/createPost', apiController.createPost, (req, res) => {
+router.post('/createpost', apiController.createPost, (req, res) => {
   if(!res.locals.createdPost) {
     res.status(500).json({message: 'Something went wrong creating your post.'});
   }
@@ -36,7 +36,7 @@ router.post('/createPost', apiController.createPost, (req, res) => {
 });
 
 // Handle POST request to /editPost
-router.post('/editPost', apiController.editPost, (req, res) => {
+router.post('/editpost', apiController.editPost, (req, res) => {
   if(!res.locals.editedPost) {
     res.status(500).json({message: 'Something went wrong editing your post.'});
   } 
