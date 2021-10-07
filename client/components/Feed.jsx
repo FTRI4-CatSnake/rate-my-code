@@ -5,6 +5,7 @@ import FeedCodeBlock from './FeedCodeBlock.jsx';
 export default function Feed(props) {
   // React hooks for state - store the data from the database
   const [codeBlocks, setCodeBlocks] = useState([]);
+  const [post, setPost] = useState();
   // const [posts, setPosts] = useState([]); //this was taken from CreatePost - same purpose as codeBlocks/setCodeBlocks
 
 
@@ -29,15 +30,15 @@ export default function Feed(props) {
     return (
       <FeedCodeBlock 
         key={post._id} 
-        title={post.title}
-        code={post.code} 
+        post={post}
+        clickHandler = {props.clickHandler}
       />
     );
   });
 
   // returns code block cards
   return (
-    <div>
+    <div id='feed'>
       {codeBlockEl}
     </div>
   );

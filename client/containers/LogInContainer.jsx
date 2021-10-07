@@ -88,7 +88,6 @@ export default function LogInContainer() {
         <header>
           TEMP NAV BAR: <br />
           <Link to="/home">Home</Link><br />
-          <Link to="/home/postview">Post View</Link>
         </header>
         <h1>Rate-My-Code</h1>
         <form>
