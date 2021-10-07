@@ -7,7 +7,6 @@ import { Button } from "@mui/material";
 
 
 export default function CreatePost() {
-  const [newPost, setNewPost] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const titleInputRef = useRef();
@@ -26,7 +25,7 @@ export default function CreatePost() {
     const enteredCause = causeInputRef.current.value;
     const enteredCode = codeInputRef.current.value;
     const createdPost = {
-      topic: enteredTopic,
+      topic: enteredTopic.toLowerCase(),
       // date: Date.now(),
       upvotes: 0,
       downvotes: 0,
@@ -38,25 +37,27 @@ export default function CreatePost() {
     };
 
     // create fetch request to POST the new post
-    fetch('/api/createPost', {
+    fetch('/api/createpost', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
       },
       body: JSON.stringify(createdPost)
     })
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          setNewPost(data);
+          // setPosts(posts.concat(data));
           setSubmitted(true);
+          console.log(data);
         }
       })
       .catch((err) => console.log('POST REQUEST ERROR: ', err));
   }
 
-  //redirect if login is verified or successfully signedup
+  //redirect if information is successfully posted
+  //'getPosts' request will run after redirect
 
   if (submitted) {
     return (
@@ -88,67 +89,67 @@ export default function CreatePost() {
     <div>
 
       <form>
-          <div>
-            <label htmlFor="title">Title </label>
-            <input
-              type="text"
-              required
-              id="title"
-              ref={titleInputRef}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="topic">Topic </label>
-            <input
-              type="text"
-              required
-              id="topic"
-              ref={topicInputRef}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="issue">Issue </label>
-            <input
-              type="text"
-              required
-              id="issue"
-              ref={issueInputRef}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="tried">Tried </label>
-            <input
-              type="text"
-              required
-              id="tried"
-              ref={triedInputRef}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="cause">Cause </label>
-            <input
-              type="text"
-              required
-              id="cause"
-              ref={causeInputRef}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="code">Code </label>
-            <input
-              type="text"
-              required
-              id="code"
-              ref={codeInputRef}
-            ></input>
-          </div>
-          <div>
-            <Button variant="contained" onClick={submitCode}>
+        <div>
+          <label htmlFor="title">Title </label>
+          <input
+            type="text"
+            required
+            id="title"
+            ref={titleInputRef}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="topic">Topic </label>
+          <input
+            type="text"
+            required
+            id="topic"
+            ref={topicInputRef}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="issue">Issue </label>
+          <input
+            type="text"
+            required
+            id="issue"
+            ref={issueInputRef}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="tried">Tried </label>
+          <input
+            type="text"
+            required
+            id="tried"
+            ref={triedInputRef}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="cause">Cause </label>
+          <input
+            type="text"
+            required
+            id="cause"
+            ref={causeInputRef}
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="code">Code </label>
+          <input
+            type="text"
+            required
+            id="code"
+            ref={codeInputRef}
+          ></input>
+        </div>
+        <div>
+          <Button variant="contained" onClick={submitCode}>
               Submit
-            </Button>
-          </div>
+          </Button>
+        </div>
    
-        </form>
+      </form>
 
       {/* <div><HighlightOffIcon id="cancel-post"/></div>
 
