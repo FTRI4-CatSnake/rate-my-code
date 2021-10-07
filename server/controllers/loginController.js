@@ -5,16 +5,16 @@ const loginController = {};
 
 /*Get user specified in req.body in getUser store in res.locals.user */
 loginController.getUser = async (req, res, next) => {
-  const { username } = req.params;
+  const { username, password } = req.body;
   //console.log(username);
   // Construct a DB query for username
   const query = {
     text: `
     SELECT *
     FROM users
-    WHERE username = $1;
+    WHERE username = $1 AND pass = $2;
     `,
-    params: [username]
+    params: [username, password]
   };
 
   // Query our DB o find username store result in res.locals.user
@@ -25,8 +25,8 @@ loginController.getUser = async (req, res, next) => {
         message: { err: err.message }
       });
     }
-    console.log(dbResponse.rows);
-    if(dbResponse.rows[0])  res.locals.user = dbResponse.rows[0];
+    console.log(dbResponse.rows[0]);
+    res.locals.user = dbResponse.rows[0] || false;
     console.log(res.locals.user);
     return next();
   });
