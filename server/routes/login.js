@@ -18,14 +18,19 @@ const router = express.Router();
     If unsucsessful return message that could not create user
 */
 router.post('/createUser',
-  loginController.getUser,
+  //loginController.getUser,
   loginController.createUser,
-  loginController.setCookie,
+  //loginController.setCookie,
   (req, res) => {
-    if (!res.locals.user) {
-      res.status(400).json({ message: 'Could not create user' });
+    const userInfo = {success: true};
+    if (res.locals.user == false) {
+      userInfo.success = false;
     }
-    res.status(200).json({userID: res.locals.user._id});
+    else{
+      userInfo.success = true;
+      userInfo.userID = res.locals.user._id;
+    }
+    res.status(200).json(userInfo);
   });
 
 // Handle request to / for loging in a user

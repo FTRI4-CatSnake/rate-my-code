@@ -58,10 +58,12 @@ loginController.verifyUser = (req, res, next) => {
   If user not found, create user in database, store new user in res.locals.user and move on
 */     
 loginController.createUser = (req, res, next) => {
-  if(res.locals.user) {
-    delete res.locals.user;
-    return next();
-  }
+  //probably don't need this right now
+  // if(res.locals.user) {
+  //   delete res.locals.user;
+  //   return next();
+  // }
+  
   const { username, password } = req.body;
 
   const query = {
