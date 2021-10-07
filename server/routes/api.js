@@ -20,7 +20,7 @@ router.get('/gettopic/:topic', apiController.getTopic, (req, res) => {
 
 // Handle POST request to /getPost
 // Return an object: {post: {postContent: {_id, topic, date, ...}, comments: []}}
-router.get('/getPost/:id', apiController.getPost, apiController.getComments, (req, res) => {
+router.get('/getpost/:id', apiController.getPost, apiController.getComments, (req, res) => {
   if(!res.locals.post) {
     res.status(500).json({message: 'No post found with that information.'});
   }  
