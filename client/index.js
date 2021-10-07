@@ -7,9 +7,7 @@ import App from './App.jsx';
 
 ReactDOM.render(
   <BrowserRouter>
-    <div>
-      <App />
-    </div>
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

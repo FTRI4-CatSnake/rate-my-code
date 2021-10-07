@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLocation } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
@@ -14,55 +14,39 @@ import './custom.scss';
 export default function MainContainer() {
 
   const [topic, setTopic] = useState('all');
-  const [post, setPost] = useState({
-    title: 'React is Hard',
-    topic: 'React',
-    issue: 'I can not get React stuff to work',
-    tried: 'Staring at React for hours',
-    cause: 'I don\'t rigthly know',
-    code:  '<App />',
-    date: '10/5/2021',
-    upvotes: 5000,
-    downvotes: 0,
-    replies: [{content: 'React is really hard'}, {content: 'React is super hard'}],
-  });
+  const [selectedPost, setSelectedPost] = useState({});
+
+  function handlePostClick(clickedPost) {
+    setSelectedPost(clickedPost);
+  }
 
   return (
-    <Container >
-      <div className={classes.mainContainer}>
-        <div className={classes.sidebar}>
-          <ProSidebar >
-            <Menu iconShape="square">
-              <MenuItem>
-                <Link to="/home">Home</Link>
-              </MenuItem>
-              <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
-              <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
-              <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
-              <MenuItem onClick={() => setTopic('c++')}>C++</MenuItem>
-              <MenuItem onClick={() => setTopic('java')}>Java</MenuItem>
-              <MenuItem onClick={() => setTopic('php')}>PHP</MenuItem>
-            </Menu>
-          </ProSidebar>
-        </div>
-        {/* we may need to import other components below */}
-      
-        <Switch>
-          <div className={classes.codeBlockContainer}>
-            <Route path="/home" exact>
-              <div className={classes.mainContainer}>
-                <h1>Welcome to Rate-My-Code</h1>
-                <Feed topic={topic} />
-              </div>
-            </Route>
-            <Route path="/home/createpost">
-              <CreatePost />
-            </Route>
-            <Route path="/home/postview">
-              <PostView post={post} />
-            </Route>
-          </div>
-        </Switch>
+    <Container className={classes.mainContainer}>
+      <ProSidebar className={classes.sidebar}>
+        <Menu iconShape="square">
+          <MenuItem>
+            <Link to="/home">Home</Link>
+          </MenuItem>
+          <MenuItem onClick={() => setTopic('javascript')}>JavaScript</MenuItem>
+          <MenuItem onClick={() => setTopic('python')}>Python</MenuItem>
+          <MenuItem onClick={() => setTopic('c#')}>C#</MenuItem>
+          <MenuItem onClick={() => setTopic('c++')}>C++</MenuItem>
+          <MenuItem onClick={() => setTopic('java')}>Java</MenuItem>
+          <MenuItem onClick={() => setTopic('php')}>PHP</MenuItem>
+        </Menu>
+      </ProSidebar>
+      <Switch>
+        <Route path="/home" exact>
+          <h1>Welcome to Rate-My-Code</h1>
+          <Feed clickHandler={handlePostClick} topic={topic} />
+        </Route>
+        <Route path="/home/createpost">
+          <CreatePost />
+        </Route>
+        <Route path="/home/postview">
+          <PostView post={selectedPost} />
+        </Route>
+      </Switch>
 
         {/* This makes the createPost button */}
         <div>
