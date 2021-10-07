@@ -27,6 +27,16 @@ router.get('/getpost/:id', apiController.getPost, apiController.getComments, (re
   res.status(200).json(res.locals.post);
 });
 
+
+// Handle GET request to /getreplies/:id
+// Return an object: {post: {postContent: {_id, topic, date, ...}, comments: []}}
+router.get('/getreplies/:_id', apiController.getComments, (req, res) => {
+  if(!res.locals.comments) {
+    res.status(500).json({message: 'No post found with that information.'});
+  }  
+  res.status(200).json(res.locals.comments);
+});
+
 // Handle POST request to /createPost  
 router.post('/createpost', apiController.createPost, (req, res) => {
   if(!res.locals.createdPost) {

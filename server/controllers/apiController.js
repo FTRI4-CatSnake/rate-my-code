@@ -72,15 +72,15 @@ apiController.getPost = (req, res, next) => {
 };
 
 apiController.getComments = (req, res, next) => {
-  const id = req.body.post;
+  const id = req.params._id;
+  console.log(id);
 
   // get comments from comments table using foreign key of correct post
   const query = {
     text: `
-      SELECT c.* 
-      FROM comments c
-      LEFT JOIN posts p
-      ON c.post_id = p.$1;
+     SELECT *
+     FROM replies 
+     WHERE post_id = $1;
     `,
     params: [id]
   };
@@ -92,8 +92,9 @@ apiController.getComments = (req, res, next) => {
         message: { err: err.message }
       });
     }
-
-    res.locals.post.comments = dbResponse.rows;
+    console.log('dbres', dbResponse.rows);
+    res.locals.comments = dbResponse.rows;
+    console.log('locals', res.locals);
     return next();
   });
 };
