@@ -50,8 +50,9 @@ export default function ThemedFeed() {
               Welcome to Rate-My-Code
             </Typography>
             <Typography variant='h5' align='center' color='text.secondary' paragraph>
-
+              Rate-My-Code is a supportive online community where you can post blocks of code that are not acting as you expect them to.
             </Typography>
+            
 
           </Container>
         </Box>
