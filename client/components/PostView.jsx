@@ -39,50 +39,6 @@ export default function PostView({post}) {
         <ReplyContainer post={post}/>
       </Container>
     </Container>
- 
-
-
-//   <Container className={classes.mainContainer}>
-//   <Container className={classes.insideContainer}>
-//     {/* temp bar to delete after development */}
-//     <header>
-//       TEMP NAV BAR: <br />
-//       <Link to="/home">Home</Link><br />
-//     </header>
-//     <h1>Rate-My-Code</h1>
-//     <form>
-//       <div className={classes.inputContainer}>
-//         <label htmlFor="username">Username </label>
-//         <input
-//           type="text"
-//           required
-//           id="username"
-//           ref={usernameInputRef}
-//         ></input>
-//       </div>
-//       <div className={classes.inputContainer}>
-//         <label htmlFor="password">Password </label>
-//         <input
-//           type="password"
-//           required
-//           id="password"
-//           ref={passwordInputRef}
-//         ></input>
-//       </div>
-//       <div className={classes.buttonContainer}>
-//         <Button variant="contained" onClick={login}>
-//           Login
-//         </Button>
-//       </div>
-//       <div className={classes.buttonContainer}>
-//         <Button variant="outlined" onClick={signup}>
-//           Signup
-//         </Button>
-//       </div>
-//     </form>
-//   </Container>
-// </Container>
-
 );
 }
 
